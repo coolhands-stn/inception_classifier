@@ -19,6 +19,9 @@ hideFramesButton = document.querySelector(".fa-xmark");
 // Show frames listing button
 showFramesListingButton = document.getElementById("image-listing");
 
+// Notification banner
+notificationBar = document.getElementById("notification-bar");
+
 
 const codeParagraph = document.getElementById("code-p");
 if(codeParagraph.textContent === "True"){
@@ -39,28 +42,48 @@ videoLoadButton.addEventListener("click", ()=> {
     videoUploadFile.click();
 });
 
+const showNotification = (notification) => {
+    notificationBar.style.top = "5px";
+    notificationBar.textContent = notification;
+
+    setTimeout(()=> {
+        notificationBar.style.top = "-90px";
+    }, 2000);
+}
+
 // Upload video,
 // Load video as background
 // show frames listing
 videoUploadFile.addEventListener("change", (event)=> {
-    imageListingWrap.style.display = "flex";
     // File
     const videoFile = event.target.files[0];
 
-    // Blob file
-    const videoSrc = URL.createObjectURL(videoFile);
+    // File size
+    const videoSize = videoFile.size
 
-    // Set path
-    source.src = videoSrc;
+    if(videoSize > 50000000){
+        // Notify User
+        showNotification("Video size cannot exceed 10MB!")
+    }else{
+        // Proceed with Upload
 
-    // Load video
-    videoElement.load();
+        // Blob file
+        const videoSrc = URL.createObjectURL(videoFile);
 
-    URL.revokeObjectURL(videoFile);
+        // Set path
+        source.src = videoSrc;
 
-    // Upload the video to server
-    videoUploadButton.click();
+        // Load video
+        videoElement.load();
 
-    // Show reveal frames button
-    showFramesListingButton.style.display = "flex";
+        URL.revokeObjectURL(videoFile);
+
+        // Upload the video to server
+        videoUploadButton.click();
+
+        // Show reveal frames button
+        showFramesListingButton.style.display = "flex";
+
+        imageListingWrap.style.display = "flex";
+    }
 })

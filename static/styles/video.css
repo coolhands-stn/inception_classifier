@@ -52,6 +52,7 @@ nav > p {
     font-weight: bold;
 
     color: #FFF;
+    cursor: pointer;
 }
 
 nav > span {
