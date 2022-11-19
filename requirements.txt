@@ -8,3 +8,4 @@ tensorflow==2.8.0
 streamlit
 Flask==2.1.0
 opencv-python==4.6.0.66
+libgl1-mesa-glx
