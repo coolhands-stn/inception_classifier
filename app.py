@@ -6,16 +6,6 @@ import os
 import cv2, imutils
 import tensorflow as tf
 
-model = tf.keras.applications.InceptionV3(
-    include_top=True,
-    weights="imagenet",
-    input_tensor=None,
-    input_shape=None,
-    pooling=None,
-    classes=1000,
-    classifier_activation="softmax",
-)
-
 VIDEO = join(dirname(realpath(__file__)), "static/uploads/videos")
 FRAMES = join(dirname(realpath(__file__)), "static/frames")
 RESIZED = join(dirname(realpath(__file__)), "static/resized")
