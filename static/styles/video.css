@@ -122,6 +122,10 @@ video {
     transition: all 0.3s ease-in-out;
 }
 
+#image-listing {
+    display: none;
+}
+
 #upload-video:hover,
 #image-listing:hover {
     transform: translateY(-5px)

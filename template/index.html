@@ -40,7 +40,7 @@
         }
 
         #output-wrap {
-            width: 36vw;
+            width: 491px;
             height: 300px;
 
             position: relative;
@@ -76,7 +76,7 @@
 
         #images-list-wrap {
             height: 100vh;
-            width: 36vw;
+            width: 491px;
 
             position: fixed;
             top: 0;
@@ -89,7 +89,7 @@
             border-radius: 4px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
-            display: flex;
+            display: none;
             flex-flow: column nowrap;
 
             overflow: hidden;
@@ -371,7 +371,8 @@
             align-items: center;
             justify-content: center;
 
-            transition: all 0.3s ease-in-out;        }
+            transition: all 0.3s ease-in-out;        
+        }
 
         .fa-bars-staggered:hover {
             transform: translateY(5px);
@@ -445,11 +446,11 @@
     </form>
         {% block content %}
             {% if video %}
-                <video id="video-element" muted="true" autoplay>
+                <video id="video-element" muted="true" autoplay loop>
                     <source id="ins-up-video-source" src="{{ url_for('static', filename=video) }}" type="video/mp4">
                 </video>
             {% else %}
-                <video id="video-element" muted="true" autoplay>
+                <video id="video-element" muted="true" autoplay loop>
                     <source id="ins-up-video-source" src="../static/assets/bg.mp4" type="video/mp4">
                 </video>
             {% endif %}
@@ -498,16 +499,9 @@
             {% endif %}
         </div>
     </div>
+    <!-- paragraph remains hidden -->
+    <p style="display: none;" id="code-p">{{ code }}</p>
 </body>
 <script src="../static/scripts/play.js"></script>
-<script>
-    const predictedImage = document.getElementById("output-image");
-    const imageIndex = document.getElementById("image-index");
-
-    if(imageIndex.textContent !== ''){
-        value = trim(imageIndex.textContent)
-        value = parseInt(value)
-        predictedImage.src = `../static/frames/${value}.jpeg` 
-    }
-</script>
+<script src="../static/scripts/main.js"></script>
 </html>

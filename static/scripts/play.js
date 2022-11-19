@@ -1,10 +1,10 @@
+console.log("[play js]")
 // Load video Button
 const videoLoadButton = document.getElementById("upload-video");
 // Upload video button
 const videoUploadButton = document.getElementById("btn-upload-video");
 // Input tag
 const videoUploadFile = document.getElementById("upload-video-file-input");
-console.log(videoUploadFile)
 // Video Source element
 const source = document.getElementById("ins-up-video-source");
 // Video element
@@ -14,19 +14,36 @@ const videoElement = document.getElementById("video-element");
 const imageListingButton = document.getElementById("image-listing");
 // Image Listing Wrap 
 const imageListingWrap = document.getElementById("images-list-wrap");
+// Hide frames listing button
+hideFramesButton = document.querySelector(".fa-xmark");
+// Show frames listing button
+showFramesListingButton = document.getElementById("image-listing");
 
-imageListingButton.addEventListener("click", ()=> {
-    const coordinates = imageListingButton.getBoundingClientRect();
+
+const codeParagraph = document.getElementById("code-p");
+if(codeParagraph.textContent === "True"){
+    showFramesListingButton.style.display = "flex";
     imageListingWrap.style.display = "flex";
-    imageListingWrap.style.top = coordinates.top + "px";
-    imageListingWrap.style.left = coordinates.left + "px";
+}
+// Show frames listing 
+imageListingButton.addEventListener("click", ()=> {
+    imageListingWrap.style.display = "flex";
 })
+
+// Hide frames listing 
+hideFramesButton.addEventListener("click", ()=> {
+    imageListingWrap.style.display = "none";
+});
 
 videoLoadButton.addEventListener("click", ()=> {
     videoUploadFile.click();
 });
 
+// Upload video,
+// Load video as background
+// show frames listing
 videoUploadFile.addEventListener("change", (event)=> {
+    imageListingWrap.style.display = "flex";
     // File
     const videoFile = event.target.files[0];
 
@@ -43,13 +60,7 @@ videoUploadFile.addEventListener("change", (event)=> {
 
     // Upload the video to server
     videoUploadButton.click();
+
+    // Show reveal frames button
+    showFramesListingButton.style.display = "flex";
 })
-
-
-const hideFrame = document.getElementsByClassName("fa-bars-staggered");
-const Frame = document.getElementById("output-wrap");
-
-hideFrame.addEventListener("click", ()=>{
-    Frame.style.right = "-36vw";
-})
- 
