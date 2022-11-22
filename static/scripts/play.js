@@ -1,4 +1,3 @@
-console.log("[play js]")
 // Load video Button
 const videoLoadButton = document.getElementById("upload-video");
 // Upload video button
